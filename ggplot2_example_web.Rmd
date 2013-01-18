@@ -1,4 +1,4 @@
-An Example of ggplot2
+An Example of 'ggplot2'
 ========================================================
 
 This is just a little example using density plots.
@@ -15,7 +15,6 @@ dt <- rnorm(100, 2, 0.5)
 sp <- c("coge", "demi", "cogl", "ptsu")
 data <- data.frame(species = factor(rep(sp, each = 25)), var1=dt)
 
-# The palette with grey:
 cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
 f1 = ggplot(data, aes(x=var1, fill=species)) + geom_density(alpha=0.2) + xlab(expression(lambda)) + ylab("posterior density") +

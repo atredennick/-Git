@@ -1,4 +1,4 @@
-An Example of ggplot2
+An Example of 'ggplot2'
 ========================================================
 
 This is just a little example using density plots.
@@ -11,6 +11,18 @@ Let's generate some data and plot the densities as if they were parameter estima
 ```r
 rm(list=ls())
 library(ggplot2)
+```
+
+
+
+```
+## Find out what's changed in ggplot2 with
+## news(Version == "0.9.0", package = "ggplot2")
+```
+
+
+
+```r
 library(knitr)
 
 dt <- rnorm(100, 2, 0.5)
