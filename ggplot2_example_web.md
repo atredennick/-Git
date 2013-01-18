@@ -6,7 +6,9 @@ This is just a little example using density plots.
 
 Let's generate some data and plot the densities as if they were parameter estimates from a hierachical Bayesian model:
 
-```{r}
+
+
+```r
 rm(list=ls())
 library(ggplot2)
 library(knitr)
@@ -35,9 +37,17 @@ f1 = ggplot(data, aes(x=var1, fill=species)) + geom_density(alpha=0.2) + xlab(ex
       )
 ```
 
+
+
+
 This produces the plot:
 
-```{r fig.width=7, fig.height=6}
+
+
+```r
 print(f1)
 ```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
 
