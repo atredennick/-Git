@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Savanna_Allometry</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Savanna_Allometry</h1>
+
+<h2>General Information</h2>
+
+<p>Code for reproducing results from &ldquo;Allometric convergence of savanna trees and implications for the use of plant scaling models in variable ecosystems&rdquo; by Andrew T. Tredennick, Lisa Patrick Bentley, and Niall P. Hanan 2013 published in PLoS ONE, doi: ######. Code was written by Andrew T. Tredennick (JAGS code for hierarchical Bayesian model highly informed by code available as supplementary material for &ldquo;Evaluating scaling models in biology using hierarchical Bayesian approaches&rdquo; by Charles A. Price, Kiona Ogle, Ethan P. White, and Joshua S. Weitz published in Ecology Letters, doi: 10.1111/j.1461-0248.2009.01316.x)</p>
+
+<p>The code and data in this repository allow a user to run the hierarchical Bayesian model described in the paper as well as reproduce all the figures.</p>
+
+<p>Requirements: JAGS (<strong>J</strong>ust <strong>A</strong>nother <strong>G</strong>IBBS <strong>S</strong>ampler, <a href="http://mcmc-jags.sourceforge.net/">http://mcmc-jags.sourceforge.net/</a>), R 2.x (<a href="http://www.r-project.org/">http://www.r-project.org/</a>) and the following R packges:</p>
+
+<ul>
+<li>rjags</li>
+<li>coda</li>
+<li>rdyrad</li>
+<li>ggplot2</li>
+<li>scales</li>
+<li>gridExtra</li>
+</ul>
+
+<p>The R code (&ldquo;SavannaAllometry_CallHBmodel.R&rdquo;) includes lines that will automatically install these packages. These lines can be commented out (#).</p>
+
+<p>Running the HB model will take considerable time at 1,000,000 iterations of three MCMC chains. As such, it is highly recommended you change the variable &#39;samples.n&#39; in the file &ldquo;SavannaAllometry_CallHBmodel.R&rdquo; until you are sure the model is running properly. However, you should note that with fewer iterations the HB model will likely not converge.</p>
+
+<p>Data use: Data is stored in a Dryad repository (link) for replication purposes. If you wish to use the data for further research, please contact Andrew Tredennick at <a href="mailto:atredenn@gmail.com">atredenn@gmail.com</a> or <a href="mailto:Andrew.Tredennick@colostate.edu">Andrew.Tredennick@colostate.edu</a></p>
+
+<h2>Included Files</h2>
+
+<ul>
+<li>SavannaAllometry_CallHBmodel.R &ndash; gets data from Dryad repository, cleans the data, calls the HB model in the JAGS code (JAGS_HBmodel_SavannaAllometry.r)</li>
+<li>JAGS_HBmodel_SavannaAllometry.r &ndash; contains code for the hiearchical Bayesian model in JAGS format</li>
+</ul>
+
+<h2>License</h2>
+
+<h2>Contact Information</h2>
+
+<p>Andrew Tredennick&#39;s emails: <a href="mailto:atredenn@gmail.com">atredenn@gmail.com</a> or <a href="mailto:Andrew.Tredennick@colostate.edu">Andrew.Tredennick@colostate.edu</a></p>
+
+<p>Andrew&#39;s website: <a href="http://warnercnr.colostate.edu/%7Eatredenn/Welcome.html">http://warnercnr.colostate.edu/~atredenn/Welcome.html</a></p>
+
+</body>
+
+</html>
+
