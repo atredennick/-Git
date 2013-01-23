@@ -18,7 +18,7 @@ Requirements: JAGS (**J**ust **A**nother **G**IBBS **S**ampler, http://mcmc-jags
 
 The R code ("SavannaAllometry_CallHBmodel.R") includes lines that will automatically install these packages. These lines can be commented out (#).
 
-Running the HB model will take considerable time at 1,000,000 iterations of three MCMC chains. As such, it is highly recommended you change the variable 'samples.n' in the file "SavannaAllometry_CallHBmodel.R" until you are sure the model is running properly. However, you should note that with fewer iterations the HB model will likely not converge.
+Running the HB model will take considerable time at 1,000,000 iterations of three MCMC chains. As such, it is highly recommended you change the variable `sample.n` in the file "SavannaAllometry_CallHBmodel.R" until you are sure the model is running properly. However, you should note that with fewer iterations the HB model will likely not converge.
 
 Data use: Data is stored in a Dryad repository (link) for replication purposes. If you wish to use the data for further research, please contact Andrew Tredennick at atredenn@gmail.com or Andrew.Tredennick@colostate.edu
 
