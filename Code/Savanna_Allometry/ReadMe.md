@@ -16,16 +16,16 @@ Requirements: JAGS (**J**ust **A**nother **G**IBBS **S**ampler, http://mcmc-jags
 * scales
 * gridExtra
 
-The R code ("SavannaAllometry_CallHBmodel.R") includes lines that will automatically install these packages. These lines can be commented out (``#``).
+The R code (``SavannaAllometry_CallHBmodel.R``) includes lines that will automatically install these packages. These lines can be commented out (``#``).
 
-Running the HB model will take considerable time at 1,000,000 iterations of three MCMC chains. As such, it is highly recommended you change the variable `sample.n` in the file "SavannaAllometry_CallHBmodel.R" until you are sure the model is running properly. However, you should note that with fewer iterations the HB model will likely not converge.
+Running the HB model will take considerable time at 1,000,000 iterations of three MCMC chains. As such, it is highly recommended you change the variable ``sample.n`` in the file ``SavannaAllometry_CallHBmodel.R`` until you are sure the model is running properly. However, you should note that with fewer iterations the HB model will likely not converge.
 
-Data use: Data is stored in a Dryad repository (link) for replication purposes. If you wish to use the data for further research, please contact Andrew Tredennick at atredenn@gmail.com or Andrew.Tredennick@colostate.edu
+Data use: Data is stored in a Dryad repository (link) for replication purposes. If you wish to use the data for further research please access the data from Dryad and cite appropriately. You can also optionally contact Andrew Tredennick at atredenn@gmail.com or Andrew.Tredennick@colostate.edu if you would like to collaborate.
 
 Included Files
 -------------------------
-* SavannaAllometry_CallHBmodel.R -- gets data from Dryad repository, cleans the data, calls the HB model in the JAGS code (JAGS_HBmodel_SavannaAllometry.r)
-* JAGS_HBmodel_SavannaAllometry.r -- contains code for the hiearchical Bayesian model in JAGS format
+* ``SavannaAllometry_CallHBmodel.R`` -- gets data from Dryad repository, cleans the data, calls the HB model in the JAGS code (``JAGS_HBmodel_SavannaAllometry.r``)
+* ``JAGS_HBmodel_SavannaAllometry.r`` -- contains code for the hiearchical Bayesian model in JAGS format
 
 License
 -------------------------
