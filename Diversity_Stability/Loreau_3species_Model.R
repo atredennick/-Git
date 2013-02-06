@@ -4,6 +4,7 @@ model <- function(rm1, rm2, rm3,
                   N1.start, N2.start, N3.start, 
                   K1, K2, K3,
                   evar1, evar2, evar3,
+                  dvar1, dvar2, dvar3,
                   beat12, beta13, beta21, beta23, beta31, beta32,
                   time){
   r1 = numeric(time)
@@ -62,7 +63,7 @@ K1 = 1000
 K2 = 1500
 K3 = 1000
 evar1 = 0.02
-evar2 = 0.1
+evar2 = 0.02
 evar3 = 0.02
 dvar1 = 1
 dvar2 = 1
@@ -86,6 +87,7 @@ model.null <- model(rm1, rm2, rm3,
                     N1.start, N2.start, N3.start, 
                     K1, K2, K3,
                     evar1, evar2, evar3,
+                    dvar1, dvar2, dvar3,
                     beat12, beta13, beta21, beta23, beta31, beta32,
                     time)
 
@@ -98,17 +100,17 @@ cv.tot = sd(Ntot)/mean(Ntot)
 cv.tot
 
 time.plot = seq(1,time,1)
-plot(time.plot, Ntot, type="l", col="grey45", ylim=c(200,2500), ylab="Biomass", xlab="Time")
-lines(time.plot, N1, col="lightblue")
+plot(time.plot, Ntot, type="l", col="grey45", ylim=c(200,3000), ylab="Biomass", xlab="Time")
+lines(time.plot, N1, col="steelblue")
 lines(time.plot, N2, col="orange")
 lines(time.plot, N3, col="purple")
 abline(h=mean(Ntot), col="black", lwd=2)
 abline(h=(sd(Ntot)+mean(Ntot)), col="black", lty="dashed")
 abline(h=(mean(Ntot)-sd(Ntot)), col="black", lty="dashed")
 
-abline(h=mean(N1), col="cadetblue", lwd=2)
-abline(h=(sd(N1)+mean(N1)), col="cadetblue", lty="dashed")
-abline(h=(mean(N1)-sd(N1)), col="cadetblue", lty="dashed")
+abline(h=mean(N1), col="steelblue", lwd=2)
+abline(h=(sd(N1)+mean(N1)), col="steelblue", lty="dashed")
+abline(h=(mean(N1)-sd(N1)), col="steelblue", lty="dashed")
 
 abline(h=mean(N2), col="darkorange", lwd=2)
 abline(h=(sd(N2)+mean(N2)), col="darkorange", lty="dashed")
@@ -117,3 +119,74 @@ abline(h=(mean(N2)-sd(N2)), col="darkorange", lty="dashed")
 abline(h=mean(N3), col="purple4", lwd=2)
 abline(h=(sd(N3)+mean(N3)), col="purple4", lty="dashed")
 abline(h=(mean(N3)-sd(N3)), col="purple4", lty="dashed")
+text(100,3000,paste("c.v. = ", round(cv.tot,3)))
+
+
+#Run model with evar vector
+rm1 = 0.5
+rm2 = 0.8
+rm3 = 0.6
+K1 = 1000
+K2 = 1500
+K3 = 1000
+evar1 = 0.02
+evar2 = seq(0.01,0.2, 0.02)
+evar3 = 0.02
+dvar1 = 1
+dvar2 = seq(0.1, 1, 0.1)
+dvar3 = 1
+beta12 = 0.8
+beta13 = 0.08
+beta21 = 0.1
+beta23 = 0.08
+beta31 = 0.1
+beta32 = beta12
+
+time = 600
+
+
+N1.start <- 200
+N2.start <- 1300
+N3.start <- 500
+
+cv.tot.store = matrix(nrow=length(evar2), ncol=length(dvar2))
+
+for(j in 1:length(dvar2)){
+  for(i in 1:length(evar2)){
+    model.null <- model(rm1, rm2, rm3, 
+                        N1.start, N2.start, N3.start, 
+                        K1, K2, K3,
+                        evar1, evar2[i], evar3,
+                        beat12, beta13, beta21, beta23, beta31, beta32,
+                        time)
+    
+    N1 <- model.null[,1]
+    N2 <- model.null[,2]
+    N3 <- model.null[,3]
+    Ntot <- model.null[,4]
+    
+    cv.tot = sd(Ntot)/mean(Ntot)
+    cv.tot.store[i,j]  = cv.tot
+    
+  }
+}
+
+
+plot(evar2, cv.tot.store, type="l")
+points(evar2, cv.tot.store, pch=21, col="white", bg="white", cex=2)
+points(evar2, cv.tot.store, pch=21, col="black", bg="white", cex=1)
+
+matplot(evar2, cv.tot.store, type="l", lwd=2, col=c("black", "grey35", "grey50", "grey75"),
+        xlim=c(0,0.25), lty="solid", ylab="Coefficient of Variation", 
+        xlab="Environmental Response of Dominant Species",
+        cex.lab=0.8, cex.axis=0.8)
+matplot(evar2, cv.tot.store, add=TRUE, pch=21, col="white", bg="white", cex=1.5)
+matplot(evar2, cv.tot.store, add=TRUE, pch=21, col=c("black", "grey35", "grey50", "grey75"),
+        bg="white", cex=0.8)
+labs = c(expression(paste(beta[i2], " = 0.1")),
+         expression(paste(beta[i2], " = 0.3")),
+         expression(paste(beta[i2], " = 0.5")),
+         expression(paste(beta[i2], " = 0.7")))
+text(c(0.225), y=c(cv.tot.store[10,1], cv.tot.store[10,2], 
+                 cv.tot.store[10,3], cv.tot.store[10,4]),
+     labs, cex=0.8)
