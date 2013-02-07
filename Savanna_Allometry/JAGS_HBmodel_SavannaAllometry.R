@@ -2,7 +2,10 @@ model{
 
 #########################################################
 # This is JAGS code to accompany Tredennick et al. 2013 #
-######################################################### 
+#########################################################
+
+#This code, and any updates to it, can also be found on GitHub:
+#http://github.com/atredennick/-Git/tree/master/Savanna_Allometry
 	
 
 ########## Term definitions #############
