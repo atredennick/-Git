@@ -1,3 +1,7 @@
+#Code to replicate results from Tredennick et al. 2013 PLoS One
+
+#This code, and any updates on it, can also be found on GitHub: 
+#http://github.com/atredennick/-Git/tree/master/Savanna_Allometry
 
 ### NOTICE!! ### NOTICE!! ### NOTICE!! ### NOTICE!! ### NOTICE!! ### NOTICE!! ### NOTICE!! ### NOTICE!! ####
 #                                                                                                          #
@@ -17,11 +21,9 @@ rm(list=ls())
 # browseURL("http://sourceforge.net/projects/mcmc-jags/files/", browser = getOption("browser"), encodeIfNeeded = FALSE)
 
 #Find the JAGS HB model file path on your computer
-##ANDREW -- can I do this from a link????
-HB.model <- ("/Users/atredenn/Documents/Projects/SSDE-Project/R_Code/Allometry_2010_Mali/FINAL/JAGS_AllDataAllometry.R")
-# HB.model <- file.choose()
+HB.model <- file.choose()
 
-#Install necessary packages
+#Install necessary packages // comment in/out if you need these
 # install.packages('rjags')
 # install.packates('coda')
 # install.packages('rdryad')
@@ -37,14 +39,12 @@ library(ggplot2)
 library(scales)
 library(gridExtra)
 
-##Bring in data from Dryad
-# data.link <- "hyperlink/here/"
-# data <- dryad_getfile(data.link)
-data=read.csv("/Users/atredenn/Documents/Projects/SSDE-Project/R_Code/Allometry_2010_Mali/FINAL/AllometryData_noPTSU_Indexed.csv")
-
+##Bring in data
+##Data is available on Dryad by searching by DOI
+data.file = file.choose()
+data=read.csv(data.file)
 
 names(data) = tolower(names(data))
-data = data[data$aggregated_leaf_wt>-9000,] #take out bad data
 
 ##Set up matrix to store LogDiameter, LogLength, LogMass, LogWoodMass and LogLeafMass. 
 Y = matrix(nrow=length(data[,1]), ncol=4)
@@ -57,7 +57,7 @@ Y[,4] = log10(data$aggregated_leaf_wt)
 
 LogDiameter = log10(data$diameter)
 
-##Set up positive definite matrix for derivition of Omega precision matrix
+##Set up positive definite matrix for derivition of Omega precision matrix (R)
 R = structure(.Data=c(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1), .Dim=c(4,4))
 
 ## Assign "N's" for indexing	
